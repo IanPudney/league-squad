@@ -4,7 +4,7 @@ function query($con,$sql)
 	$result=mysqli_query($con,$sql);
 	return mysqli_fetch_all($result,MYSQLI_ASSOC);
 }
-
+set_time_limit(90);
 $con=mysqli_connect("localhost","root","","league_db");
 if (mysqli_connect_errno())
   {
