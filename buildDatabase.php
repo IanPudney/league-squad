@@ -4,7 +4,7 @@ function query($con,$sql)
 	$result=mysqli_query($con,$sql);
 	return mysqli_fetch_all($result,MYSQLI_ASSOC);
 }
-set_time_limit(90);
+set_time_limit(600);
 $con=mysqli_connect("localhost","root","","league_db");
 if (mysqli_connect_errno())
   {
@@ -25,7 +25,7 @@ $data=file_get_contents("http://prod.api.pvp.net/api/lol/na/v1.3/game/by-summone
 //	->games[0-9]->fellowPlayers[0-8]->championId
 
 $i=0;
-while($i<15)
+while($i<400)
 {
 	//get the next user
 	$sql="SELECT userId FROM userids WHERE pending=1 LIMIT 1";
@@ -122,7 +122,7 @@ while($i<15)
 		echo "ERROR 4: ".mysqli_error($con);
 	}
 	$i++;
-	Sleep(1);
+	Sleep(3);
 }
 
 ?> 

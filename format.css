@@ -1,0 +1,126 @@
+.mainBody
+{
+background-color:#111111;
+}
+.main
+{
+width:900px;
+float:left;
+text-align:center;
+}
+.results
+{
+background-color:#EEEEEE;
+width:350px;
+height:630px;
+float:right;
+border-style:solid;
+border-width:1px;
+text-align:center;
+border-radius:20px;
+padding:5px;
+padding-left:0px;
+position:relative;
+}
+.banbox
+{
+background-color:#EEEEEE;
+width:100%;
+border-style:solid;
+border-width:1px;
+text-align:center;
+border-radius:20px;
+padding:5px;
+padding-left:0px;
+}
+.allybox
+{
+background-color:#EEEEEE;
+width:330px;
+border-style:solid;
+border-width:1px;
+text-align:center;
+float:left;
+border-radius:20px;
+}
+.enemybox
+{
+background-color:#EEEEEE;
+width:330px;
+border-style:solid;
+border-width:1px;
+text-align:center;
+float:right;
+border-radius:20px;
+}
+.styled-select {
+   width: 268px;
+   padding: 5px;
+   padding-left:55px;
+   margin: 4px auto;
+   margin-left: 2px;
+   margin-right: 2px;
+   font-size: 28px;
+   line-height: 1;
+   border: 0;
+   border-color:#EEEEEE;
+   border-color:#EEEEEE;
+   border-style:solid;
+   border-radius: 5px;
+   height: 50px;
+   -webkit-appearance: none;
+   background-repeat:no-repeat;
+	background-position:left;
+	background-size:50px;
+	background-color:#111111;
+	color:#EEEEEE;
+   }
+ .verticalBeam {
+	margin-right:auto;
+	width:3px;
+	position:absolute; 
+ }
+ .pick {
+	font-family:Arial, Helvetica, sans-serif;
+	width:71%;
+    padding: 5px;
+   padding-left:80px;
+   margin: 10px;
+   font-size: 28px;
+   line-height: 1;
+   border: 0;
+   border-color:#EEEEEE;
+   border-color:#EEEEEE;
+   border-style:solid;
+   border-radius: 5px;
+   height: 80px;
+   -webkit-appearance: none;
+   background-repeat:no-repeat;
+	background-position:left;
+	background-size:80px;
+	background-color:#111111;
+	color:#EEEEEE;
+ }
+ .pickText{
+ font-size:12px;
+ text-align:center;
+ }
+ 
+ .noline a:hover, a:visited, a:link, a:active{
+	color: #EEEEEE;
+    text-decoration: none;
+ }
+ .resetButton{
+ position:absolute;
+ bottom:5;
+ width:100%;
+ text-align:center;
+ color:black;
+ }
+ .picksTooltip{
+ font-family:Arial,Helvetica,sans-serif;
+ color:#CCCCCC;
+ text-align:center;
+ padding:20px;
+ 
+ }
