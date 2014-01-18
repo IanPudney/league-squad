@@ -1,5 +1,5 @@
 <?php
-$champions[0]='&lt;None&gt;';
+$champions[0]='Select...';
 $champions[266]='Aatrox';
 $champions[103]='Ahri';
 $champions[84]='Akali';
