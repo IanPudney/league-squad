@@ -24,14 +24,14 @@ $data=file_get_contents("http://prod.api.pvp.net/api/lol/na/v1.3/game/by-summone
 //fellow player champions:
 //	->games[0-9]->fellowPlayers[0-8]->championId
 
-$i=99;
-while($i<100)
+$i=0;
+while($i<15)
 {
 	//get the next user
 	$sql="SELECT userId FROM userids WHERE pending=1 LIMIT 1";
 	$result=query($con,$sql);
 	$next_user=$result[0]["userId"];
-	echo $next_user;
+	echo $next_user."<br>";
 	
 	//get last ten matches
 	$match_data=json_decode(file_get_contents("http://prod.api.pvp.net/api/lol/na/v1.3/game/by-summoner/".$next_user."/recent?api_key=945bb189-d900-4ac5-a93d-7e98dda6c2a0"));	
@@ -69,7 +69,7 @@ while($i<100)
 			$result = mysqli_query($con,$sql);
 			if(!$result)
 			{
-				echo mysqli_error($con);
+				echo "ERROR 1: ".mysqli_error($con);
 			}
 			if(mysqli_num_rows($result) == 0)
 			{
@@ -78,7 +78,7 @@ while($i<100)
 				$result=mysqli_query($con,$sql);
 				if(!$result)
 				{
-					echo mysqli_error($con);
+					echo "ERROR 2: ".mysqli_error($con);
 				}
 			}
 			
@@ -89,22 +89,28 @@ while($i<100)
 			} else {
 				$l_champions[]=$player->championId;
 			}
-		}		
+		}
+		
+		
 		//write the game value tables
-		$sql="INSERT INTO games VALUES (".$game->gameId;
-		foreach($w_champions as $k =>$v)
+		if($game->subType=="RANKED_SOLO_5x5")
 		{
-			$sql=$sql.", ".$v;
-		}
-		foreach($l_champions as $k =>$v)
-		{
-			$sql=$sql.", ".$v;
-		}
-		$sql=$sql.",0)";
-		$result=mysqli_query($con,$sql);
-		if(!$result)
-		{
-			echo mysqli_error($con);
+			$sql="INSERT INTO games VALUES (".$game->gameId;
+			foreach($w_champions as $k =>$v)
+			{
+				$sql=$sql.", ".$v;
+			}
+			foreach($l_champions as $k =>$v)
+			{
+				$sql=$sql.", ".$v;
+			}
+			$sql=$sql.",0)";
+			$result=mysqli_query($con,$sql);
+			if(!$result)
+			{
+				echo "ERROR 3: ".mysqli_error($con)."\n<br>\n";
+				echo "\n<br>\n";
+			}
 		}
 	}
 	
@@ -113,10 +119,10 @@ while($i<100)
 	$result=mysqli_query($con,$sql);
 	if(!$result)
 	{
-		echo mysqli_error($con);
+		echo "ERROR 4: ".mysqli_error($con);
 	}
 	$i++;
-	
+	Sleep(1);
 }
 
 ?> 
