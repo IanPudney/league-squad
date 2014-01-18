@@ -1,5 +1,6 @@
 <?php
 include "champions.php";
+include "pickselect.php";
 ?><html>
 <head>
 <link rel="stylesheet" type="text/css" href="format.css">
@@ -77,6 +78,10 @@ include "champions.php";
 </div>
 <?php
 ///CODE FOR DETERMINING PICKS HERE
+if (isset($_GET["enemy0"]) || isset($_GET["enemy1"]) || isset($_GET["enemy2"]) || isset($_GET["enemy3"]) || isset($_GET["enemy4"]))
+	if ($_GET["enemy0"]!=0 || $_GET["enemy1"]!=0 || $_GET["enemy2"]!=0 || $_GET["enemy3"]!=0 || $_GET["enemy4"]!=0 )
+		$picks = pickselect($_GET);
+print_r($picks);
 //$picks=array(1=>'This is a test reason. It is centered on the blank space in this "pick" item, rather than the whole item.');
 
 ?>
@@ -85,7 +90,7 @@ include "champions.php";
 	<?php
 	if(!isset($picks)||empty($picks))
 	{
-		echo "<div class='picksTooltip'><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />As champions are chosen during draft, indicate them to the left.<br />Your best picks will appear here.</div>";
+		echo "<div class='picksTooltip'><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />As champions are chosen during draft, indicate them to the left.  When at least one enemy champion is indicated, your best picks will appear here.</div>";
 	} else {
 		foreach($picks as $k => $v)
 		{
