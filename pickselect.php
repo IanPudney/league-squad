@@ -10,7 +10,7 @@ function pickselect($IN)
 {
 	include "champ_index.php";
 	global $champions;
-	$con=mysqli_connect("10.255.145.40","root","","league_db");
+	$con=mysqli_connect("localhost","root","","league_db");
 	$sql = "SELECT * FROM wins";
 	$result = query($con, $sql);
 	$rates=$result[0];

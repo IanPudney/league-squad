@@ -9,9 +9,9 @@ include "pickselect.php";
 <form method="get"> 
 <div class="main">
 	<!--USER INTERFACE:-->
-	<a href="index.php"><img src="league-squad.png", alt="League Squad"/></a>
+	<a href="index.php"><img src="league-squad.png", alt="League Squad" style="float:center"/></a>
 		<div class="banbox">
-		<image src="bansText.png" alt="Bans" style="float:left"/>
+		<image src="bansText.png" alt="Bans" style=" float:left"/>
 		<?php
 		for ($i = 0; $i < 6; $i++)
 		{
@@ -22,7 +22,7 @@ include "pickselect.php";
 			foreach ($champions as $j => $v)
 			{
 				if (!in_array($j, $_GET) || $j == 0)
-					echo "<option value = $j> $v </option>";
+					echo "<option value = <$j> $v </option>";
 			}
 			if(array_key_exists('ban'.$i,$_GET))
 				echo "<option selected='selected' value=".$_GET['ban'.$i].">".$champions[$_GET['ban'.$i]]."</option>";
@@ -52,41 +52,18 @@ include "pickselect.php";
 				echo "</select><br>";
 			}
 			?>
-			</div><div class="enemybox">
-			<img src="enemiesText.png" alt="Enemies">
-			<br/>
-			<?php
-			for ($i = 0; $i < 5; $i++)
-			{
-				if(isset($_GET['enemy'.$i]) && isset($champions[$_GET['enemy'.$i]]) && $_GET['enemy'.$i]!=0)
-					echo "<select class='styled-select' name = 'enemy".$i."' style=\"background-image:url('http://ddragon.leagueoflegends.com/cdn/3.15.5/img/champion/".$champions[$_GET['enemy'.$i]].".png');\" onchange='this.form.submit()'>";
-				else
-					echo "<select class='styled-select' name = 'enemy".$i."' style=\"background-image:url('notAPerson.png');\"  onchange='this.form.submit()'>";
-				foreach ($champions as $j => $v)
-				{
-					if (!in_array($j, $_GET) || $j == 0)
-						echo "<option value = $j> $v </option>";
-				}
-				if(array_key_exists('enemy'.$i,$_GET))
-					echo "<option selected='selected' value=".$_GET['enemy'.$i].">".$champions[$_GET['enemy'.$i]]."</option>";
-				echo "</select><br>";
-			}
-			?>
 			</div>
-			<img src="verticalBeam.png" alt="vertical beam" class="verticalBeam"/>
-		</div>
-</div>
-<?php
-///CODE FOR DETERMINING PICKS HERE
-if (isset($_GET["enemy0"]) || isset($_GET["enemy1"]) || isset($_GET["enemy2"]) || isset($_GET["enemy3"]) || isset($_GET["enemy4"]))
-	if ($_GET["enemy0"]!=0 || $_GET["enemy1"]!=0 || $_GET["enemy2"]!=0 || $_GET["enemy3"]!=0 || $_GET["enemy4"]!=0 )
-	{
-		$picks = pickselect($_GET);
-	}
-//$picks=array(1=>'This is a test reason. It is centered on the blank space in this "pick" item, rather than the whole item.');
+			<?php
+		///CODE FOR DETERMINING PICKS HERE
+		if (isset($_GET["enemy0"]) || isset($_GET["enemy1"]) || isset($_GET["enemy2"]) || isset($_GET["enemy3"]) || isset($_GET["enemy4"]))
+			if ($_GET["enemy0"]!=0 || $_GET["enemy1"]!=0 || $_GET["enemy2"]!=0 || $_GET["enemy3"]!=0 || $_GET["enemy4"]!=0 )
+			{
+				$picks = pickselect($_GET);
+			}
+		//$picks=array(1=>'This is a test reason. It is centered on the blank space in this "pick" item, rather than the whole item.');
 
-?>
-<div class="results">
+		?>
+		<div class="results">
 	<img src="bestPicksText.png",alt="Best Picks" />
 	<?php
 	if(!isset($picks)||empty($picks))
@@ -96,7 +73,7 @@ if (isset($_GET["enemy0"]) || isset($_GET["enemy1"]) || isset($_GET["enemy2"]) |
 		$q=0;
 		foreach($picks as $k => $v)
 		{
-			if($q>=5) break;
+			if($q>=6) break;
 			?>
 			<a class="noline" href=<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 			if(empty($_GET))
@@ -129,6 +106,33 @@ if (isset($_GET["enemy0"]) || isset($_GET["enemy1"]) || isset($_GET["enemy2"]) |
 	<a href="<?php echo $uri_parts = explode('?', $_SERVER['REQUEST_URI'], 2)[0]; ?>"><img src="resetButton.png"/></a>
 	</div>
 </div>
+			
+			<div class="enemybox">
+			<img src="enemiesText.png" alt="Enemies">
+			<br/>
+			<?php
+			for ($i = 0; $i < 5; $i++)
+			{
+				if(isset($_GET['enemy'.$i]) && isset($champions[$_GET['enemy'.$i]]) && $_GET['enemy'.$i]!=0)
+					echo "<select class='styled-select' name = 'enemy".$i."' style=\"background-image:url('http://ddragon.leagueoflegends.com/cdn/3.15.5/img/champion/".$champions[$_GET['enemy'.$i]].".png');\" onchange='this.form.submit()'>";
+				else
+					echo "<select class='styled-select' name = 'enemy".$i."' style=\"background-image:url('notAPerson.png');\"  onchange='this.form.submit()'>";
+				foreach ($champions as $j => $v)
+				{
+					if (!in_array($j, $_GET) || $j == 0)
+						echo "<option value = $j> $v </option>";
+				}
+				if(array_key_exists('enemy'.$i,$_GET))
+					echo "<option selected='selected' value=".$_GET['enemy'.$i].">".$champions[$_GET['enemy'.$i]]."</option>";
+				echo "</select><br>";
+			}
+			?>
+			</div>
+			<!--<img src="verticalBeam.png" alt="vertical beam" class="verticalBeam"/>-->
+		</div>
+		
+</div>
+
 </form>
 </body>
 </html>

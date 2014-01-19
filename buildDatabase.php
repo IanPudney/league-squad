@@ -30,6 +30,11 @@ while(true)
 	//get the next user
 	$sql="SELECT userId FROM userids WHERE pending=1 LIMIT 1";
 	$result=query($con,$sql);
+	if (!$result)
+		{
+			$sql="SELECT userId FROM userids LIMIT 1";
+			$result=query($con,$sql);
+		}
 	$next_user=$result[0]["userId"];
 	echo $next_user."<br>";
 	

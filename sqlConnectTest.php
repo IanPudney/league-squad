@@ -7,7 +7,7 @@ if (mysqli_connect_errno())
   }
 
 
-$sql="SELECT * FROM userids";
+$sql="SELECT * FROM wins";
 if ($result=mysqli_query($con,$sql))
   {
   echo "Command executed successfully<br/>";
