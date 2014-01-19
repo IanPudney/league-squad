@@ -80,8 +80,9 @@ include "pickselect.php";
 ///CODE FOR DETERMINING PICKS HERE
 if (isset($_GET["enemy0"]) || isset($_GET["enemy1"]) || isset($_GET["enemy2"]) || isset($_GET["enemy3"]) || isset($_GET["enemy4"]))
 	if ($_GET["enemy0"]!=0 || $_GET["enemy1"]!=0 || $_GET["enemy2"]!=0 || $_GET["enemy3"]!=0 || $_GET["enemy4"]!=0 )
+	{
 		$picks = pickselect($_GET);
-print_r($picks);
+	}
 //$picks=array(1=>'This is a test reason. It is centered on the blank space in this "pick" item, rather than the whole item.');
 
 ?>
@@ -92,8 +93,10 @@ print_r($picks);
 	{
 		echo "<div class='picksTooltip'><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />As champions are chosen during draft, indicate them to the left.  When at least one enemy champion is indicated, your best picks will appear here.</div>";
 	} else {
+		$q=0;
 		foreach($picks as $k => $v)
 		{
+			if($q>=5) break;
 			?>
 			<a class="noline" href=<?php echo "http://".$_SERVER["HTTP_HOST"].$_SERVER["REQUEST_URI"];
 			if(empty($_GET))
@@ -113,11 +116,12 @@ print_r($picks);
 			<div class="pick" style="background-image:url('http://ddragon.leagueoflegends.com/cdn/3.15.5/img/champion/<?php echo $champions[$k]; ?>.png');">
 			<?php echo $champions[$k]; ?>
 			<div style="font-size:12;font-">
-			<?php echo $v; ?>
+			<?php echo round($v,3)*100; echo '%'; ?>
 			</div>
 			</div>
 			</a>
 			<?php
+			$q++;
 		}
 	}
 	?>
